@@ -1,22 +1,20 @@
-# Swagger-mocha
+# mocha Swagger tests
 
 Automatic validation of Swagger paths schemas and responses.
 Using mocha for pretty error outputting.
 
-Supports swagger 2.0 only. Should support any REST api, even not express, though
-it's not confirmed.
+Supports swagger 1.2 only. Should support any REST api
 
 ## Usage
 
 ```js
-var SwaggerTest = require('swagger-mocha');
-var app = require('../path/to/something/that/exposes/an/express/app');
-var swaggerJsonPath = '/swagger.json';
+var SwaggerTest = require('mocha-swagger-tests');
+var app = require('../path/to/something/that/exposes/an/http/server');
 
-var swaggerTest = new SwaggerTest(app, swaggerJsonPath);
+var swaggerTest = new SwaggerTest({swaggerPath: '/docs.json'});
 
-swaggerTest.customRequests = [
-  {
+// - Optional
+swaggerTest.customTest({
     requestUrl: '/resource?test-with-query-parameter=1337',
     path: '/resource',
     method: 'get',
@@ -26,26 +24,32 @@ swaggerTest.customRequests = [
         expect(result).to.be('1337');
       });
     }
-  }
-];
+});
 
+// - Optional
+swaggerTest.before = function(done) {
+    // Do something to start the server, does not matter if sync or not
+    swaggerTest.setApp(app);
+    done();
+};
+
+// - Optional
 swaggerTest.validParams = {
   resourceId: '1337'
 };
 
+// - NOT Optional
 swaggerTest.run();
 ```
 
 ## API
 
-### `new SwaggerTest(app, swaggerPath)`
+### `new SwaggerTest(config)`
 
-* `app`, either an express app or url to a running server (e.g. "http://localhost:3000")
 * `swaggerPath`, the path to the swagger.json file. Default is /swagger.json
 
-### `SwaggerTest#customRequests = [request]`
+### `SwaggerTest#customTest = function(request)`
 
-* `customRequests`, an array of additional requests to test
 * `request`
   * `requestUrl`, the path (plus any query strings) to test
   * `path`, the name of the specs for the path in the swagger.json file
@@ -70,5 +74,4 @@ Run mocha.
 
 ## Todo
 
-* Support other methods than GET. Unsure if it's wanted
 * Tests

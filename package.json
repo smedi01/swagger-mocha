@@ -1,6 +1,6 @@
 {
-  "name": "swagger-mocha",
-  "version": "0.2.1",
+  "name": "mocha-swagger-tests",
+  "version": "1.0.0",
   "description": "Automatic validation of Swagger schemas and responses",
   "main": "lib/index.js",
   "repository": "https://github.com/omninews/swagger-mocha.git",
@@ -14,14 +14,14 @@
     "test",
     "assert"
   ],
-  "author": "Omni",
+  "author": "Matt Apperson",
   "contributors": [
     {
-      "name": "Andreas Hultgren",
-      "email": "andreas@omni.se"
+      "name": "Matt Apperson",
+      "email": "me@mattapperson.com"
     }
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "async": "^0.9.0",
     "expect.js": "^0.3.1",
