@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Automatic validation of Swagger schemas and responses",
   "main": "lib/index.js",
-  "repository": "https://github.com/omninews/swagger-mocha.git",
-  "homepage": "https://github.com/omninews/swagger-mocha",
+  "repository": "https://github.com/hatchback/swagger-mocha.git",
+  "homepage": "https://github.com/hatchback/swagger-mocha",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
